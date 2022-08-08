@@ -39,7 +39,7 @@ namespace zoniventris.Attraction
         {
             public override string[] GetPath(bool isFemale)
             {
-                return new string[] { Instantiator.kInteractionPath };
+                return Instantiator.GetInteractionPath(isFemale);
             }
 
             protected override string GetInteractionName(Sim actor, Sim target, InteractionObjectPair iop)

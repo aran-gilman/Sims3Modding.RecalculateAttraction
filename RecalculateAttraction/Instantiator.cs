@@ -1,5 +1,6 @@
 ﻿using Sims3.Gameplay.Actors;
 using Sims3.Gameplay.EventSystem;
+using Sims3.Gameplay.Utilities;
 using Sims3.SimIFace;
 using System;
 
@@ -7,10 +8,16 @@ namespace zoniventris.Attraction
 {
     public class Instantiator
     {
+        public static string[] GetInteractionPath(bool isFemale)
+        {
+            return new string[] { LocalizeString(isFemale, "InteractionPath", new object[0]) };
+        }
+
         [Tunable]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Required for mod initialization")]
         private static bool kInstantiator = false;
 
-        public static string kInteractionPath = "Attraction...";
+        private static readonly string sLocalizationKey = "zoniventris/Attraction/";
 
         static Instantiator()
         {
@@ -41,13 +48,18 @@ namespace zoniventris.Attraction
         {
             foreach (var pair in sim.Interactions)
             {
-                if (pair.InteractionDefinition.GetType() == Attraction.ReportAttraction.Singleton.GetType())
+                if (pair.InteractionDefinition.GetType() == ReportAttraction.Singleton.GetType())
                 {
                     return;
                 }
             }
             sim.AddInteraction(ReportAttraction.Singleton);
             sim.AddInteraction(RecalculateAttractionScore.Singleton);
+        }
+
+        private static string LocalizeString(bool isFemale, string entryKey, object[] parameters)
+        {
+            return Localization.LocalizeString(isFemale, sLocalizationKey + entryKey, parameters);
         }
     }
 }
