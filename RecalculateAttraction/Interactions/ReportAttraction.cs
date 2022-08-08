@@ -19,11 +19,11 @@ namespace zoniventris.Attraction.Interactions
             string notification;
             if (relationship == null)
             {
-                notification = $"DEBUG No relationship exists between {actor.Name} and {target.Name}";
+                notification = LocalizeString(actor.IsFemale, "DisplayNoRelationship", new object[] { actor, target });
             }
             else
             {
-                notification = $"DEBUG Attraction score between {actor.Name} and {target.Name}: {relationship.AttractionScore}";
+                notification = LocalizeString(actor.IsFemale, "DisplayScore", new object[] { actor, target, relationship.AttractionScore });
             }
             StyledNotification.Format format = new StyledNotification.Format(notification, StyledNotification.NotificationStyle.kGameMessagePositive);
             StyledNotification.Show(format);
@@ -44,13 +44,20 @@ namespace zoniventris.Attraction.Interactions
 
             protected override string GetInteractionName(Sim actor, Sim target, InteractionObjectPair iop)
             {
-                return $"Report attraction score between {actor.Name} and {target.Name}";
+                return LocalizeString(actor.IsFemale, "InteractionName", new object[] { actor, target });
             }
 
             protected override bool Test(Sim actor, Sim target, bool isAutonomous, ref GreyedOutTooltipCallback greyedOutTooltipCallback)
             {
                 return Cheats.sTestingCheatsEnabled && actor != target && !isAutonomous;
             }
+        }
+
+        private static readonly string sLocalizationKey = "ReportAttraction:";
+
+        private static string LocalizeString(bool isFemale, string entryKey, object[] parameters)
+        {
+            return Instantiator.LocalizeString(isFemale, sLocalizationKey + entryKey, parameters);
         }
     }
 }

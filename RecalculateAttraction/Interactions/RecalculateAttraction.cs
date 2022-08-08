@@ -8,7 +8,7 @@ using Sims3.SimIFace;
 namespace zoniventris.Attraction.Interactions
 {
     [DoesntRequireTuning]
-    public class RecalculateAttractionScore : ImmediateInteraction<Sim, Sim>
+    public class RecalculateAttraction : ImmediateInteraction<Sim, Sim>
     {
         public static readonly InteractionDefinition Singleton = new Definition();
 
@@ -21,7 +21,7 @@ namespace zoniventris.Attraction.Interactions
             return true;
         }
 
-        private sealed class Definition : ImmediateInteractionDefinition<Sim, Sim, RecalculateAttractionScore>
+        private sealed class Definition : ImmediateInteractionDefinition<Sim, Sim, RecalculateAttraction>
         {
             public override string[] GetPath(bool isFemale)
             {
@@ -30,13 +30,20 @@ namespace zoniventris.Attraction.Interactions
 
             protected override string GetInteractionName(Sim actor, Sim target, InteractionObjectPair iop)
             {
-                return $"Recalculate attraction score between {actor.Name} and {target.Name}";
+                return LocalizeString(actor.IsFemale, "InteractionName", new object[] { actor, target });
             }
 
             protected override bool Test(Sim actor, Sim target, bool isAutonomous, ref GreyedOutTooltipCallback greyedOutTooltipCallback)
             {
                 return Cheats.sTestingCheatsEnabled && actor != target && !isAutonomous;
             }
+        }
+
+        private static readonly string sLocalizationKey = "RecalculateAttraction:";
+
+        private static string LocalizeString(bool isFemale, string entryKey, object[] parameters)
+        {
+            return Instantiator.LocalizeString(isFemale, sLocalizationKey + entryKey, parameters);
         }
     }
 }

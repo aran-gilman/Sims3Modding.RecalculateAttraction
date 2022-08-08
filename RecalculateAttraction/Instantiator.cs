@@ -59,7 +59,7 @@ namespace zoniventris.Attraction
                 }
             }
             sim.AddInteraction(Interactions.ReportAttraction.Singleton);
-            sim.AddInteraction(Interactions.RecalculateAttractionScore.Singleton);
+            sim.AddInteraction(Interactions.RecalculateAttraction.Singleton);
             sim.AddInteraction(Interactions.ToggleAttraction.Singleton);
         }
     }

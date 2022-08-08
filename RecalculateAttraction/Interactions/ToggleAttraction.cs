@@ -89,7 +89,7 @@ namespace zoniventris.Attraction.Interactions
 
         }
 
-        private static string sLocalizationKey = "ToggleAttraction:";
+        private static readonly string sLocalizationKey = "ToggleAttraction:";
 
         private static string LocalizeString(bool isFemale, string entryKey, object[] parameters)
         {
