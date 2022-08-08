@@ -6,7 +6,7 @@ using Sims3.Gameplay.Socializing;
 using Sims3.SimIFace;
 using Sims3.UI;
 
-namespace zoniventris.Attraction
+namespace zoniventris.Attraction.Interactions
 {
     [DoesntRequireTuning]
     public class ReportAttraction : ImmediateInteraction<Sim, Sim>

@@ -13,6 +13,11 @@ namespace zoniventris.Attraction
             return new string[] { LocalizeString(isFemale, "InteractionPath", new object[0]) };
         }
 
+        public static string LocalizeString(bool isFemale, string entryKey, object[] parameters)
+        {
+            return Localization.LocalizeString(isFemale, sLocalizationKey + entryKey, parameters);
+        }
+
         [Tunable]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Required for mod initialization")]
         private static bool kInstantiator = false;
@@ -48,18 +53,14 @@ namespace zoniventris.Attraction
         {
             foreach (var pair in sim.Interactions)
             {
-                if (pair.InteractionDefinition.GetType() == ReportAttraction.Singleton.GetType())
+                if (pair.InteractionDefinition.GetType() == Interactions.ReportAttraction.Singleton.GetType())
                 {
                     return;
                 }
             }
-            sim.AddInteraction(ReportAttraction.Singleton);
-            sim.AddInteraction(RecalculateAttractionScore.Singleton);
-        }
-
-        private static string LocalizeString(bool isFemale, string entryKey, object[] parameters)
-        {
-            return Localization.LocalizeString(isFemale, sLocalizationKey + entryKey, parameters);
+            sim.AddInteraction(Interactions.ReportAttraction.Singleton);
+            sim.AddInteraction(Interactions.RecalculateAttractionScore.Singleton);
+            sim.AddInteraction(Interactions.ToggleAttraction.Singleton);
         }
     }
 }

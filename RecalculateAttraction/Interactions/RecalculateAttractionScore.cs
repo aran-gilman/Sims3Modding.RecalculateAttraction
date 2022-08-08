@@ -5,7 +5,7 @@ using Sims3.Gameplay.Interactions;
 using Sims3.Gameplay.Socializing;
 using Sims3.SimIFace;
 
-namespace zoniventris.Attraction
+namespace zoniventris.Attraction.Interactions
 {
     [DoesntRequireTuning]
     public class RecalculateAttractionScore : ImmediateInteraction<Sim, Sim>

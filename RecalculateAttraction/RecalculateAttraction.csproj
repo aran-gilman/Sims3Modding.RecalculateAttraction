@@ -55,6 +55,7 @@
     <Compile Include="Interactions\RecalculateAttractionScore.cs" />
     <Compile Include="Interactions\ReportAttraction.cs" />
     <Compile Include="Instantiator.cs" />
+    <Compile Include="Interactions\ToggleAttraction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
