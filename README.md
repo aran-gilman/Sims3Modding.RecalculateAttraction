@@ -24,8 +24,6 @@ Install this mod by placing it in your Mods/Packages folder. (If this folder doe
 
 * Calculating attraction does not work for Sims who are engaged or married to each other, though it should still work for engaged or married Sims when used on Sims they are *not* engaged or married to. For whatever reason, CalculateAttraction() exits without setting the relationship attraction score. The options for fixing this have unwanted side-effects (e.g. temporarily changing the relationship status) and/or are outside the scope of this mod. If you want a particular result for these sims, use the "Toggle attraction" interaction instead.
 
-* Infinite values are displayed weirdly in the attraction reporting notification. This impacts pairs of Sims who have not had an attraction score calculated for them, since the game initializes the attraction score to positive infinity. This will be fixed in a future update.
-
 * Checking for errors and disallowed relationships is fairly bare-bones right now. I don't *think* it will, for example, let a Sim be attracted to their car, but if it does...well, everything in this mod requires player direction, so at least it won't happen randomly. Please file a bug report and I'll try to have it fixed in a future update.
 
 * While the package is setup for localization, all strings for all locales are currently in English.
