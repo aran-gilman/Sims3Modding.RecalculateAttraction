@@ -21,6 +21,10 @@ namespace zoniventris.Attraction.Interactions
             {
                 notification = LocalizeString(actor.IsFemale, "DisplayNoRelationship", new object[] { actor, target });
             }
+            else if (relationship.AttractionScore == float.PositiveInfinity)
+            {
+                notification = LocalizeString(actor.IsFemale, "DisplayInfiniteScore", new object[] { actor, target });
+            }
             else
             {
                 notification = LocalizeString(actor.IsFemale, "DisplayScore", new object[] { actor, target, relationship.AttractionScore });
